@@ -5,10 +5,19 @@
   <h1 class="display-4">Welcome to Avybe<br>Hello {{ user_pr.first_name }}</h1>
   <p class="lead">its an awesome profile picture</p>
   <hr class="my-4">
-  <img src="{{ user_pr.display_picture.url }}" class="image_responsive" height="100px" width="100px">
+  <img src="{{ user_pr.display_picture.url }}" class="image_responsive" height="200px" width="200px">
   <p>
     {{ user_pr.display_picture.url }}<BR>
    You have learned some awesome technologies like {{ user_pr.technologies }}</p>
+  <p>Your nickname {{ user_pr.nickname}} is pretty great!</p>
+  <p>Update your information below:</p>
+  <form method="POST" enctype="multipart/form-data">
+    <!-- Very Important csrf Token -->
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" class="btn btn-primary btn-lg" name="register">
 </div>
 </CENTER>
 {% endblock %}
