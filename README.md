@@ -9,13 +9,14 @@
 5. git init
 6. Start the server `python manage.py runserver`
 
-__Creating a new app__
+__Creating a new app__  
 `django-admin startapp <app_name>`
 
-__Setting Up PostgreSQL__
-`pip install psycopg2-binary`
+__Setting Up PostgreSQL__  
+`pip install psycopg2 and/or psycopg2-binary`
+Only psycopg2-binary works for me and it has not been an issue as of yet...
 
-__migrate table data__
+__migrate table data__  
 `python manage.py migrate`
 
 
