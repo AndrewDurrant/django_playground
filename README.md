@@ -8,3 +8,14 @@
    - this creates a <project_name> directory in your current directory
 5. git init
 6. Start the server `python manage.py runserver`
+
+__Creating a new app__
+`django-admin startapp <app_name>`
+
+__Setting Up PostgreSQL__
+`pip install psycopg2-binary`
+
+__migrate table data__
+`python manage.py migrate`
+
+

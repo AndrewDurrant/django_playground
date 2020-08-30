@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from secrets import *
 
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 # Tell WSGI what settings file to use:
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_playground.settings'
@@ -21,11 +23,11 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'django_playground.settings'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-SECRET_KEY = SECRET_KEY
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,8 +82,11 @@ WSGI_APPLICATION = 'django_playground.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_playground',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost'
     }
 }
 
@@ -123,6 +128,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+]
 
 #File Uploading
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
