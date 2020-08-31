@@ -1,6 +1,6 @@
 
 
-from django.shortcuts import render
+from django.shortcuts import (render, get_object_or_404, HttpResponseRedirect)
 from .forms import Profile_Form
 from .models import User_Profile
 
@@ -21,3 +21,31 @@ def create_profile(request):
             return render(request, 'profile_maker/details.html', {'user_pr': user_pr})
     context = {"form": form,}
     return render(request, 'profile_maker/create.html', context)
+
+
+def list_view(request):
+    context = {}
+    context['dataset'] = User_Profile.objects.all()
+
+    return render(request, 'profile_maker/list_view.html', context)
+
+def detail_view(request, id):
+    context = {}
+    context['dataset'] = User_Profile.objects.all()
+
+    return render(request, 'profile_maker/detail_view.html', context)
+
+def update_view(request, id):
+    context = {}
+
+    obj = get_object_or_404(User_Profile, id = id)
+
+    form = Profile_Form(request.POST or None, instance = obj)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/profile_maker/'+id)
+
+    context['form'] = form
+
+    return render(request, 'profile_maker/update_view.html', context)

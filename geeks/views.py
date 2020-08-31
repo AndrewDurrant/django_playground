@@ -46,7 +46,7 @@ def update_view(request, id):
     # redirect to detail_view
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("geeks/"+id)
+        return HttpResponseRedirect("/geeks/"+id)
 
     # add form dictionary to context
     context["form"] = form
