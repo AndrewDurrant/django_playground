@@ -51,4 +51,4 @@ def update_view(request, id):
     # add form dictionary to context
     context["form"] = form
 
-    return render(request, "geeks/update_view.html")
+    return render(request, "geeks/update_view.html", context)
