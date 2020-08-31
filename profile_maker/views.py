@@ -40,7 +40,7 @@ def update_view(request, id):
 
     obj = get_object_or_404(User_Profile, id = id)
 
-    form = Profile_Form(request.POST or None, instance = obj)
+    form = Profile_Form(request.POST or None, request.FILES or None, instance = obj)
 
     if form.is_valid():
         form.save()
