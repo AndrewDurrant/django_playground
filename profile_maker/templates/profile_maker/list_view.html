@@ -7,7 +7,7 @@
   {{ data.nickname }}<br />
   {{ data.technologies }}<br />
   {{ data.email }}<br />
-  {{ data.display_picture }}<br />
+  <img src="{{ data.display_picture.url }}" class="image_responsive" height="300px" width="auto"><br />
   <hr/>
 
   {% endfor %}

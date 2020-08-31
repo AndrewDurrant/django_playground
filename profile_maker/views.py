@@ -31,7 +31,7 @@ def list_view(request):
 
 def detail_view(request, id):
     context = {}
-    context['dataset'] = User_Profile.objects.all()
+    context['data'] = User_Profile.objects.get(id = id)
 
     return render(request, 'profile_maker/detail_view.html', context)
 
@@ -44,7 +44,7 @@ def update_view(request, id):
 
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('/profile_maker/'+id)
+        return HttpResponseRedirect('/upload/'+id)
 
     context['form'] = form
 
